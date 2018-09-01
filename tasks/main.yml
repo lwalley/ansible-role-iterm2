@@ -1,0 +1,21 @@
+---
+- name: Ensure fonts are installed.
+  get_url:
+    url: "{{ item.url }}"
+    dest: "~/Library/Fonts"
+  with_items: "{{ iterm2_fonts }}"
+  when: iterm2_fonts is defined
+
+- name: Ensure DynamicProfiles are installed.
+  uri:
+    url: "{{ item.url }}"
+    dest:  "~/Library/Application Support/iTerm2/DynamicProfiles/"
+    user: "{{ item.user }}"
+    password: "{{ item.password }}"
+    force_basic_auth: yes
+  with_items: "{{ iterm2_dynamic_profiles }}"
+  when: iterm2_dynamic_profiles is defined
+
+- name: Ensure configured profile is set to default.
+  command: "defaults write com.googlecode.iterm2 'Default Bookmark Guid' -string '{{ iterm2_default_profile_guid }}'"
+  when: iterm2_default_profile_guid is defined and iterm2_default_profile_guid

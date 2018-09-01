@@ -1,0 +1,15 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: lwalley
+  description: Installs and configures iTerm2 fonts and profiles for Mac OS X.
+  license: license (MIT)
+  min_ansible_version: 2.6
+  platforms:
+    - name: MacOSX
+      versions:
+      - all
+      - any
+  galaxy_tags:
+    - development
