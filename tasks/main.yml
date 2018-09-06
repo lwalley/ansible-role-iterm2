@@ -19,3 +19,9 @@
 - name: Ensure configured profile is set to default.
   command: "defaults write com.googlecode.iterm2 'Default Bookmark Guid' -string '{{ iterm2_default_profile_guid }}'"
   when: iterm2_default_profile_guid is defined and iterm2_default_profile_guid
+
+- name: Ensure shell integration is installed.
+  shell: curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
+  args:
+    warn: no
+  when: iterm2_shell_integration is defined and iterm2_shell_integration

@@ -2,3 +2,4 @@
 iterm2_fonts: []
 iterm2_dynamic_profiles: []
 iterm2_default_profile_guid: ""
+iterm2_shell_integration: yes

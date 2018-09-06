@@ -5,7 +5,8 @@ Installs and configures fonts and other profile preferences for [iTerm2][iterm2]
 ## Requirements
 
 [iTerm2][iterm2] must be installed on the system prior to running this role,
-(suggested role: `geerlingguy.homebrew`).
+(suggested role: `geerlingguy.homebrew`). Curl is required for shell
+integration.
 
 ## Role Variables
 
@@ -19,6 +20,7 @@ Available variables with example values are listed below, for default values see
         user: example
         password: 123abc
     iterm2_default_profile_guid: 40B423CE-3599-4BF2-8C92-33CE033157B1
+    iterm2_shell_integration: yes
 
 ## Dependencies
 
