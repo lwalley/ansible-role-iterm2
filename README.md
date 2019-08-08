@@ -19,8 +19,27 @@ Available variables with example values are listed below, for default values see
       - url: https://api.bitbucket.org/2.0/repositories/example/example/src/master/iTerm2/DynamicProfiles/example.plist
         user: example
         password: 123abc
+    iterm2_preferences_custom_folder: ~/example/iTerm2/Preferences
+    # If loading preferences from a custom folder your default profile GUID
+    # will likely already be set, so you can skip adding the profile GUID.
     iterm2_default_profile_guid: 40B423CE-3599-4BF2-8C92-33CE033157B1
     iterm2_shell_integration: yes
+
+To use the custom preferences folder you will need to create an
+[iTerm2 preferences][iterm2-preferences] file `com.googlecode.iterm2.plist` and
+have the file and the custom folder path available on your machine. It is
+recommended to track your preferences file in a git repository, then you can
+opt for iTerm2 to automatically save changes to the preferences file on exit.
+
+Refer to [iTerm2 dynamic profiles documentataion][iterm2-dynamic-profiles] on how
+to generate the `example.plist` file; typically configure profiles first via
+iTerm2 preferences panel and then use _Other Actions... > Copy All Profiles as JSON_
+and paste into your `*.plist` file. Note if you provide a preferences file then
+you can include the GUID in the preferences file, no need to configure
+`iterm2_default_profile_guid` which would override your preferences.
+
+[iTerm2 shell integration][iterm2-shell] is recommended in order to keep track
+of command history, current working directory and more.
 
 ## Dependencies
 
@@ -38,3 +57,6 @@ MIT
 
 [brew]: https://brew.sh
 [iterm2]: https://www.iterm2.com
+[iterm2-dynamic-profiles]: https://www.iterm2.com/documentation-dynamic-profiles.html
+[iterm2-preferences]: https://www.iterm2.com/documentation-preferences-general.html
+[iterm2-shell]: https://www.iterm2.com/documentation-shell-integration.html

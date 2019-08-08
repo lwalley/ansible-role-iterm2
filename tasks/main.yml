@@ -16,6 +16,11 @@
   with_items: "{{ iterm2_dynamic_profiles }}"
   when: iterm2_dynamic_profiles is defined
 
+- name: Ensure preferences are loaded from a custom folder.
+  command: "defaults write com.googlecode.iterm2 'PrefsCustomFolder' -string '{{ iterm2_preferences_custom_folder }}'"
+  when: iterm2_preferences_custom_folder is defined and iterm2_preferences_custom_folder
+
+# If loading preferences from a folder, user probably shouldn't set this.
 - name: Ensure configured profile is set to default.
   command: "defaults write com.googlecode.iterm2 'Default Bookmark Guid' -string '{{ iterm2_default_profile_guid }}'"
   when: iterm2_default_profile_guid is defined and iterm2_default_profile_guid
