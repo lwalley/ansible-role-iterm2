@@ -1,4 +1,9 @@
 ---
+- name: Ensure iTerm directories are initialized if they are not already.
+  command: "open -a /Applications/iTerm.app"
+  args:
+    creates: "~/Library/Application Support/iTerm2/DynamicProfiles/"
+
 - name: Ensure fonts are installed.
   get_url:
     url: "{{ item.url }}"
