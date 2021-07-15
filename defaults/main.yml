@@ -1,6 +1,7 @@
 ---
 iterm2_fonts: []
 iterm2_dynamic_profiles: []
+iterm2_dynamic_profiles_local: []
 iterm2_preferences_custom_folder: ""
 iterm2_default_profile_guid: ""
 iterm2_shell_integration: yes

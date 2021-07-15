@@ -11,7 +11,17 @@
   with_items: "{{ iterm2_fonts }}"
   when: iterm2_fonts is defined
 
-- name: Ensure DynamicProfiles are installed.
+- name: Ensure local DynamicProfiles are copied to iTerm2 directory.
+  copy:
+    src: "{{ item }}"
+    dest: "~/Library/Application Support/iTerm2/DynamicProfiles/{{ item | basename }}"
+    remote_src: yes
+    backup: no
+  become: false
+  with_items: "{{ iterm2_dynamic_profiles_local }}"
+  when: iterm2_dynamic_profiles_local is defined
+
+- name: Ensure external DynamicProfiles are downloaded to iTerm2 directory.
   uri:
     url: "{{ item.url }}"
     dest:  "~/Library/Application Support/iTerm2/DynamicProfiles/"
@@ -21,8 +31,12 @@
   with_items: "{{ iterm2_dynamic_profiles }}"
   when: iterm2_dynamic_profiles is defined
 
+# iTerm2 will need to be restarted for preference changes to kick in.
 - name: Ensure preferences are loaded from a custom folder.
-  command: "defaults write com.googlecode.iterm2 'PrefsCustomFolder' -string '{{ iterm2_preferences_custom_folder }}'"
+  command: "{{ item }}"
+  with_items:
+    - "defaults write com.googlecode.iterm2 'PrefsCustomFolder' -string '{{ iterm2_preferences_custom_folder }}'"
+    - "defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder true"
   when: iterm2_preferences_custom_folder is defined and iterm2_preferences_custom_folder
 
 # If loading preferences from a folder, user probably shouldn't set this.
